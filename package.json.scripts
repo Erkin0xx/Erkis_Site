@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "type-check": "tsc --noEmit",
+    "supabase:types": "supabase gen types typescript --linked > types/database.types.ts",
+    "supabase:login": "supabase login",
+    "supabase:link": "supabase link",
+    "db:migrate": "echo 'Run supabase-schema.sql in Supabase Dashboard SQL Editor'",
+    "db:reset": "supabase db reset",
+    "validate": "npm run type-check && npm run lint && npm run format:check"
+  }
+}
