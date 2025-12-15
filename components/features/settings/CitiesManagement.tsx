@@ -109,34 +109,41 @@ export function CitiesManagement() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="bg-black/60 border border-white/5 rounded-[1.5rem] p-8 shadow-lg">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <MapPin className="h-6 w-6 text-purple-500" />
-          <h2 className="text-2xl font-bold text-zinc-100">My Cities</h2>
+          <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500">
+            <MapPin className="w-6 h-6 text-white" />
+          </div>
+          <div>
+            <h2 className="text-2xl font-bold text-white">My Cities</h2>
+            <p className="text-sm text-zinc-400">Manage your travel destinations</p>
+          </div>
         </div>
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => setShowForm(!showForm)}
-          className="flex items-center gap-2 rounded-xl bg-purple-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-purple-700"
+          className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 shadow-lg active:scale-[0.98]"
         >
           {showForm ? <X className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
           {showForm ? "Cancel" : "Add City"}
         </motion.button>
       </div>
 
-      {/* Add City Form */}
-      <AnimatePresence>
-        {showForm && (
-          <motion.form
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            onSubmit={handleAddCity}
-            className="space-y-4 overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
-          >
+      <div className="space-y-6">
+
+        {/* Add City Form */}
+        <AnimatePresence>
+          {showForm && (
+            <motion.form
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              onSubmit={handleAddCity}
+              className="space-y-4 overflow-hidden rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl mb-6"
+            >
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label className="mb-2 block text-sm font-medium text-zinc-300">
@@ -254,172 +261,173 @@ export function CitiesManagement() {
               />
             </div>
 
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              type="submit"
-              className="w-full rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-3 font-medium text-white transition-all hover:from-purple-700 hover:to-pink-700"
-            >
-              Add City
-            </motion.button>
-          </motion.form>
-        )}
-      </AnimatePresence>
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                type="submit"
+                className="w-full rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 px-4 py-3 font-semibold text-white transition-all duration-300 shadow-lg active:scale-[0.98]"
+              >
+                Add City
+              </motion.button>
+            </motion.form>
+          )}
+        </AnimatePresence>
 
-      {/* Visited Cities Table */}
-      <div className="space-y-4">
-        <h3 className="text-xl font-semibold text-zinc-200">
-          Visited Cities ({visitedCities.length})
-        </h3>
-        <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="border-b border-white/10 bg-white/5">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-400">
-                    City
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-400">
-                    Country
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-400">
-                    Visit Date
-                  </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-zinc-400">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/10">
-                {visitedCities.length === 0 ? (
+        {/* Visited Cities Table */}
+        <div className="space-y-3">
+          <h3 className="text-lg font-bold text-white">
+            Visited Cities ({visitedCities.length})
+          </h3>
+          <div className="overflow-hidden rounded-xl border border-white/10 bg-white/5 backdrop-blur-xl">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="border-b border-white/10 bg-white/5">
                   <tr>
-                    <td
-                      colSpan={4}
-                      className="px-6 py-8 text-center text-sm text-zinc-400"
-                    >
-                      No visited cities yet. Add one above!
-                    </td>
+                    <th className="px-6 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+                      City
+                    </th>
+                    <th className="px-6 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+                      Country
+                    </th>
+                    <th className="px-6 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+                      Visit Date
+                    </th>
+                    <th className="px-6 py-3 text-right text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+                      Actions
+                    </th>
                   </tr>
-                ) : (
-                  visitedCities.map((city) => (
-                    <tr key={city.id} className="hover:bg-white/5">
-                      <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-zinc-100">
-                        {city.name}
-                      </td>
-                      <td className="whitespace-nowrap px-6 py-4 text-sm text-zinc-300">
-                        {city.country}
-                      </td>
-                      <td className="whitespace-nowrap px-6 py-4 text-sm text-zinc-300">
-                        {city.visit_date
-                          ? new Date(city.visit_date).toLocaleDateString()
-                          : "-"}
-                      </td>
-                      <td className="whitespace-nowrap px-6 py-4 text-right text-sm">
-                        <div className="flex items-center justify-end gap-2">
-                          <motion.button
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            onClick={() => handleToggleStatus(city)}
-                            className="rounded-lg bg-blue-600/20 p-2 text-blue-400 hover:bg-blue-600/30"
-                            title="Move to wishlist"
-                          >
-                            <Check className="h-4 w-4" />
-                          </motion.button>
-                          <motion.button
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            onClick={() => handleDeleteCity(city.id)}
-                            className="rounded-lg bg-red-600/20 p-2 text-red-400 hover:bg-red-600/30"
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </motion.button>
-                        </div>
+                </thead>
+                <tbody className="divide-y divide-white/10">
+                  {visitedCities.length === 0 ? (
+                    <tr>
+                      <td
+                        colSpan={4}
+                        className="px-6 py-8 text-center text-sm text-zinc-500"
+                      >
+                        No visited cities yet. Add one above!
                       </td>
                     </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
+                  ) : (
+                    visitedCities.map((city) => (
+                      <tr key={city.id} className="hover:bg-white/5 transition-colors">
+                        <td className="whitespace-nowrap px-6 py-4 text-sm font-bold text-white">
+                          {city.name}
+                        </td>
+                        <td className="whitespace-nowrap px-6 py-4 text-sm text-zinc-400">
+                          {city.country}
+                        </td>
+                        <td className="whitespace-nowrap px-6 py-4 text-sm text-zinc-400">
+                          {city.visit_date
+                            ? new Date(city.visit_date).toLocaleDateString()
+                            : "-"}
+                        </td>
+                        <td className="whitespace-nowrap px-6 py-4 text-right text-sm">
+                          <div className="flex items-center justify-end gap-2">
+                            <motion.button
+                              whileHover={{ scale: 1.1 }}
+                              whileTap={{ scale: 0.9 }}
+                              onClick={() => handleToggleStatus(city)}
+                              className="rounded-lg bg-blue-500/20 border border-blue-500/30 p-2 text-blue-400 hover:bg-blue-500/30 transition-colors"
+                              title="Move to wishlist"
+                            >
+                              <Check className="h-4 w-4" />
+                            </motion.button>
+                            <motion.button
+                              whileHover={{ scale: 1.1 }}
+                              whileTap={{ scale: 0.9 }}
+                              onClick={() => handleDeleteCity(city.id)}
+                              className="rounded-lg bg-red-500/20 border border-red-500/30 p-2 text-red-400 hover:bg-red-500/30 transition-colors"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </motion.button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Wishlist Cities Table */}
-      <div className="space-y-4">
-        <h3 className="flex items-center gap-2 text-xl font-semibold text-zinc-200">
-          Wishlist Cities ({wishlistCities.length})
-          <span className="text-sm font-normal text-zinc-400">
-            (These blink on the map!)
-          </span>
-        </h3>
-        <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="border-b border-white/10 bg-white/5">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-400">
-                    City
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-400">
-                    Country
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-400">
-                    Notes
-                  </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-zinc-400">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/10">
-                {wishlistCities.length === 0 ? (
-                  <tr>
-                    <td
-                      colSpan={4}
-                      className="px-6 py-8 text-center text-sm text-zinc-400"
-                    >
-                      No wishlist cities yet. Add one above!
-                    </td>
-                  </tr>
-                ) : (
-                  wishlistCities.map((city) => (
-                    <tr key={city.id} className="hover:bg-white/5">
-                      <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-zinc-100">
-                        {city.name}
-                      </td>
-                      <td className="whitespace-nowrap px-6 py-4 text-sm text-zinc-300">
-                        {city.country}
-                      </td>
-                      <td className="px-6 py-4 text-sm text-zinc-300">
-                        {city.notes || "-"}
-                      </td>
-                      <td className="whitespace-nowrap px-6 py-4 text-right text-sm">
-                        <div className="flex items-center justify-end gap-2">
-                          <motion.button
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            onClick={() => handleToggleStatus(city)}
-                            className="rounded-lg bg-green-600/20 p-2 text-green-400 hover:bg-green-600/30"
-                            title="Mark as visited"
-                          >
-                            <Check className="h-4 w-4" />
-                          </motion.button>
-                          <motion.button
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            onClick={() => handleDeleteCity(city.id)}
-                            className="rounded-lg bg-red-600/20 p-2 text-red-400 hover:bg-red-600/30"
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </motion.button>
-                        </div>
-                      </td>
+        {/* Wishlist Cities Table */}
+        <div className="space-y-3">
+            <h3 className="flex items-center gap-2 text-lg font-bold text-white">
+              Wishlist Cities ({wishlistCities.length})
+              <span className="text-xs font-normal text-zinc-500">
+                (These blink on the map!)
+              </span>
+            </h3>
+            <div className="overflow-hidden rounded-xl border border-white/10 bg-white/5 backdrop-blur-xl">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="border-b border-white/10 bg-white/5">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+                        City
+                      </th>
+                      <th className="px-6 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+                        Country
+                      </th>
+                      <th className="px-6 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+                        Notes
+                      </th>
+                      <th className="px-6 py-3 text-right text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+                        Actions
+                      </th>
                     </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
+                  </thead>
+                  <tbody className="divide-y divide-white/10">
+                    {wishlistCities.length === 0 ? (
+                      <tr>
+                        <td
+                          colSpan={4}
+                          className="px-6 py-8 text-center text-sm text-zinc-500"
+                        >
+                          No wishlist cities yet. Add one above!
+                        </td>
+                      </tr>
+                    ) : (
+                      wishlistCities.map((city) => (
+                        <tr key={city.id} className="hover:bg-white/5 transition-colors">
+                          <td className="whitespace-nowrap px-6 py-4 text-sm font-bold text-white">
+                            {city.name}
+                          </td>
+                          <td className="whitespace-nowrap px-6 py-4 text-sm text-zinc-400">
+                            {city.country}
+                          </td>
+                          <td className="px-6 py-4 text-sm text-zinc-400">
+                            {city.notes || "-"}
+                          </td>
+                          <td className="whitespace-nowrap px-6 py-4 text-right text-sm">
+                            <div className="flex items-center justify-end gap-2">
+                              <motion.button
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                                onClick={() => handleToggleStatus(city)}
+                                className="rounded-lg bg-green-500/20 border border-green-500/30 p-2 text-green-400 hover:bg-green-500/30 transition-colors"
+                                title="Mark as visited"
+                              >
+                                <Check className="h-4 w-4" />
+                              </motion.button>
+                              <motion.button
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                                onClick={() => handleDeleteCity(city.id)}
+                                className="rounded-lg bg-red-500/20 border border-red-500/30 p-2 text-red-400 hover:bg-red-500/30 transition-colors"
+                              >
+                                <Trash2 className="h-4 w-4" />
+                              </motion.button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
         </div>
       </div>
     </div>

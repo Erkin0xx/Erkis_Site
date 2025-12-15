@@ -7,7 +7,14 @@ import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
   Target,
-  LogOut
+  LogOut,
+  User,
+  Gamepad2,
+  Shield,
+  AlertTriangle,
+  Settings,
+  ArrowLeft,
+  MapPin
 } from "lucide-react";
 
 interface NavItem {
@@ -16,7 +23,7 @@ interface NavItem {
   icon: React.ComponentType<{ className?: string }>;
 }
 
-const navItems: NavItem[] = [
+const dashboardNavItems: NavItem[] = [
   {
     name: "General",
     href: "/dashboard",
@@ -29,8 +36,38 @@ const navItems: NavItem[] = [
   },
 ];
 
+const settingsNavItems: NavItem[] = [
+  {
+    name: "Profile Information",
+    href: "/dashboard/settings",
+    icon: User,
+  },
+  {
+    name: "R6 Config",
+    href: "/dashboard/settings/r6",
+    icon: Gamepad2,
+  },
+  {
+    name: "Cities",
+    href: "/dashboard/settings/cities",
+    icon: MapPin,
+  },
+  {
+    name: "Account Info",
+    href: "/dashboard/settings/account",
+    icon: Shield,
+  },
+  {
+    name: "Danger Zone",
+    href: "/dashboard/settings/danger",
+    icon: AlertTriangle,
+  },
+];
+
 export default function DashboardSidebar() {
   const pathname = usePathname();
+  const isSettingsPage = pathname?.startsWith('/dashboard/settings');
+  const navItems = isSettingsPage ? settingsNavItems : dashboardNavItems;
 
   return (
     <motion.aside
@@ -87,6 +124,34 @@ export default function DashboardSidebar() {
               );
             })}
           </nav>
+
+          {/* Settings Button */}
+          {!isSettingsPage && (
+            <Link href="/dashboard/settings">
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition-all duration-300 mb-2"
+              >
+                <Settings className="w-5 h-5" />
+                <span className="font-medium">Settings</span>
+              </motion.div>
+            </Link>
+          )}
+
+          {/* Back to Dashboard Button */}
+          {isSettingsPage && (
+            <Link href="/dashboard">
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition-all duration-300 mb-2"
+              >
+                <ArrowLeft className="w-5 h-5" />
+                <span className="font-medium">Back to Dashboard</span>
+              </motion.div>
+            </Link>
+          )}
 
           {/* Logout Button */}
           <Link href="/api/auth/signout">

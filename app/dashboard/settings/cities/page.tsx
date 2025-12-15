@@ -1,14 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import ProfileForm from "@/components/features/settings/ProfileForm";
-import type { Database } from "@/types/database.types";
-
-type Profile = Database["public"]["Tables"]["profiles"]["Row"];
-
-interface SettingsViewProps {
-  profile: Profile;
-}
+import { CitiesManagement } from "@/components/features/settings/CitiesManagement";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -34,7 +27,7 @@ const itemVariants = {
   },
 };
 
-export default function SettingsView({ profile }: SettingsViewProps) {
+export default function CitiesPage() {
   return (
     <motion.div
       variants={containerVariants}
@@ -43,7 +36,7 @@ export default function SettingsView({ profile }: SettingsViewProps) {
       className="space-y-6"
     >
       <motion.div variants={itemVariants}>
-        <ProfileForm profile={profile} />
+        <CitiesManagement />
       </motion.div>
     </motion.div>
   );

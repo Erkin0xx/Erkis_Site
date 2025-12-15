@@ -213,7 +213,7 @@ export default function R6Page() {
             {/* On anime aussi ce conteneur pour que les cartes arrivent une par une */}
             <motion.div variants={containerVariants} className="flex-none grid grid-cols-2 lg:grid-cols-4 gap-4 h-32">
                 {/* K/D */}
-                <motion.div variants={itemVariants} className="bg-black/60 border border-white/5 rounded-[1.5rem] p-5 flex flex-col justify-center relative group overflow-hidden shadow-lg hover:bg-white/[0.02] transition-colors">
+                <motion.div variants={itemVariants} className="bg-black/60 border border-white/5 rounded-[1.5rem] p-5 flex flex-col justify-center relative group overflow-hidden shadow-lg ">
                     <div className="relative z-10">
                         <div className="flex items-center gap-2 text-zinc-500 mb-1">
                             <Target className="w-3 h-3" />
@@ -225,7 +225,7 @@ export default function R6Page() {
                 </motion.div>
 
                 {/* Win Rate */}
-                <motion.div variants={itemVariants} className="bg-black/60 border border-white/5 rounded-[1.5rem] p-5 flex flex-col justify-center relative group overflow-hidden shadow-lg hover:bg-white/[0.02] transition-colors">
+                <motion.div variants={itemVariants} className="bg-black/60 border border-white/5 rounded-[1.5rem] p-5 flex flex-col justify-center relative group overflow-hidden shadow-lg ">
                     <div className="relative z-10">
                         <div className="flex items-center gap-2 text-zinc-500 mb-1">
                             <TrendingUp className="w-3 h-3" />
@@ -237,7 +237,7 @@ export default function R6Page() {
                 </motion.div>
 
                 {/* Headshot % */}
-                <motion.div variants={itemVariants} className="bg-black/60 border border-white/5 rounded-[1.5rem] p-5 flex flex-col justify-center relative group overflow-hidden shadow-lg hover:bg-white/[0.02] transition-colors">
+                <motion.div variants={itemVariants} className="bg-black/60 border border-white/5 rounded-[1.5rem] p-5 flex flex-col justify-center relative group overflow-hidden shadow-lg ">
                     <div className="relative z-10">
                         <div className="flex items-center gap-2 text-zinc-500 mb-1">
                             <Crosshair className="w-3 h-3" />
@@ -249,7 +249,7 @@ export default function R6Page() {
                 </motion.div>
 
                 {/* Kills/Match */}
-                <motion.div variants={itemVariants} className="bg-black/60 border border-white/5 rounded-[1.5rem] p-5 flex flex-col justify-center relative group overflow-hidden shadow-lg hover:bg-white/[0.02] transition-colors">
+                <motion.div variants={itemVariants} className="bg-black/60 border border-white/5 rounded-[1.5rem] p-5 flex flex-col justify-center relative group overflow-hidden shadow-lg ">
                     <div className="relative z-10">
                         <div className="flex items-center gap-2 text-zinc-500 mb-1">
                             <Zap className="w-3 h-3" />
